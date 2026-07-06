@@ -134,7 +134,7 @@ export const products: Product[] = [
     licenseNo: "Mfg. Lic. No. 89/UA/SC/P-2016 & 90/UA/2016",
     caution:
       "Not to be sold by retail without the prescription of a Registered Medical Practitioner. Tablet to be consumed whole, not to be broken.",
-    image: "",
+    image: "/products/trucefdan-cv-500.jpeg",
   },
 ];
 

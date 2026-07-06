@@ -5,6 +5,11 @@
   /* Font family — uses CSS var set by next/font */
   --font-sans: "Inter", var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
 
+  /* Core colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+
   /* Background palette */
   --color-cream: #F8FAFC; /* Slate-50 - clean medical white */
   --color-cream-alt: #F1F5F9; /* Slate-100 */
