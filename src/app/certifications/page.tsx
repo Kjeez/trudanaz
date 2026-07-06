@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { manufacturers, company } from "@/data/products";
 import SectionEyebrow from "@/components/SectionEyebrow";
+import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/Animations";
 
 export const metadata: Metadata = {
   title: "Certifications & Compliance",
@@ -59,26 +60,32 @@ export default function CertificationsPage() {
       {/* Hero */}
       <section className="bg-cream-alt">
         <div className="site-container py-16 md:py-24">
-          <div className="max-w-3xl">
-            <SectionEyebrow>Quality & Compliance</SectionEyebrow>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink mb-6">
-              Certifications &amp; Compliance
-            </h1>
-            <p className="text-body text-lg leading-relaxed">
-              At {company.name}, regulatory compliance isn&apos;t just a requirement — it&apos;s a
-              cornerstone of our business. Every product we market is manufactured at
-              certified facilities under strict quality protocols.
-            </p>
-          </div>
+          <StaggerContainer className="max-w-3xl">
+            <StaggerItem>
+              <SectionEyebrow>Quality & Compliance</SectionEyebrow>
+            </StaggerItem>
+            <StaggerItem>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink mb-6">
+                Certifications &amp; Compliance
+              </h1>
+            </StaggerItem>
+            <StaggerItem>
+              <p className="text-body text-lg leading-relaxed">
+                At {company.name}, regulatory compliance isn&apos;t just a requirement — it&apos;s a
+                cornerstone of our business. Every product we market is manufactured at
+                certified facilities under strict quality protocols.
+              </p>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Certifications grid */}
       <section className="bg-cream">
         <div className="site-container py-16 md:py-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert) => (
-              <div
+              <StaggerItem
                 key={cert.name}
                 className={`rounded-[var(--radius-card)] border p-6 ${cert.color}`}
               >
@@ -87,25 +94,25 @@ export default function CertificationsPage() {
                 <p className="text-sm leading-relaxed opacity-90">
                   {cert.description}
                 </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* License numbers */}
       <section className="bg-sage/20">
         <div className="site-container py-16 md:py-20">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <SectionEyebrow>License & Registration</SectionEyebrow>
             <h2 className="text-3xl font-extrabold text-ink">
               Drug &amp; Food Licences
             </h2>
-          </div>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {manufacturers.map((mfr) => (
-              <div
+              <StaggerItem
                 key={mfr.name}
                 className="bg-white rounded-[var(--radius-panel)] p-8"
               >
@@ -140,15 +147,15 @@ export default function CertificationsPage() {
                     <dd className="text-body mt-1">{mfr.makes}</dd>
                   </div>
                 </dl>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* GST details */}
       <section className="bg-cream">
-        <div className="site-container py-16 md:py-20">
+        <SlideUp className="site-container py-16 md:py-20">
           <div className="max-w-2xl mx-auto text-center">
             <SectionEyebrow>Company Registration</SectionEyebrow>
             <h2 className="text-3xl font-extrabold text-ink mb-8">
@@ -183,7 +190,7 @@ export default function CertificationsPage() {
               </dl>
             </div>
           </div>
-        </div>
+        </SlideUp>
       </section>
     </>
   );

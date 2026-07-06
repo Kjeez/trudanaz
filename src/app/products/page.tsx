@@ -4,6 +4,8 @@ import ProductCard from "@/components/ProductCard";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import ProductFilter from "./ProductFilter";
 
+import { FadeIn, SlideUp } from "@/components/Animations";
+
 export const metadata: Metadata = {
   title: "Products",
   description:
@@ -12,9 +14,9 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <section className="bg-cream">
+    <section className="bg-cream min-h-screen">
       <div className="site-container py-16 md:py-20">
-        <div className="text-center mb-12">
+        <FadeIn className="text-center mb-12">
           <SectionEyebrow>Product Range</SectionEyebrow>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink mb-4">
             Our Products
@@ -24,9 +26,11 @@ export default function ProductsPage() {
             and ISO-certified facilities. Every product meets the highest standards of
             quality and compliance.
           </p>
-        </div>
+        </FadeIn>
 
-        <ProductFilter products={products} categories={CATEGORIES} />
+        <SlideUp delay={0.2}>
+          <ProductFilter products={products} categories={CATEGORIES} />
+        </SlideUp>
       </div>
     </section>
   );

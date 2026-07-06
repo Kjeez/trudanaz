@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { company, manufacturers } from "@/data/products";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/Animations";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -14,30 +15,38 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="bg-cream-alt">
         <div className="site-container py-16 md:py-24">
-          <div className="max-w-3xl">
-            <SectionEyebrow>About Us</SectionEyebrow>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink mb-6">
-              {company.name}
-            </h1>
-            <p className="text-body text-lg leading-relaxed mb-4">
-              {company.name} is a dynamic Indian pharmaceutical and nutraceutical company
-              headquartered in Mumbai. We are committed to making high-quality healthcare
-              products accessible to practitioners and patients across India.
-            </p>
-            <p className="text-body leading-relaxed">
-              Our product range spans critical therapeutic areas — from hepatology and
-              gastroenterology to nutritional supplementation — all manufactured at
-              WHO-GMP and ISO-certified facilities under strict quality control protocols.
-            </p>
-          </div>
+          <StaggerContainer className="max-w-3xl">
+            <StaggerItem>
+              <SectionEyebrow>About Us</SectionEyebrow>
+            </StaggerItem>
+            <StaggerItem>
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink mb-6">
+                {company.name}
+              </h1>
+            </StaggerItem>
+            <StaggerItem>
+              <p className="text-body text-lg leading-relaxed mb-4">
+                {company.name} is a dynamic Indian pharmaceutical and nutraceutical company
+                headquartered in Mumbai. We are committed to making high-quality healthcare
+                products accessible to practitioners and patients across India.
+              </p>
+            </StaggerItem>
+            <StaggerItem>
+              <p className="text-body leading-relaxed">
+                Our product range spans critical therapeutic areas — from hepatology and
+                gastroenterology to nutritional supplementation — all manufactured at
+                WHO-GMP and ISO-certified facilities under strict quality control protocols.
+              </p>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Mission & Vision */}
       <section className="bg-cream">
         <div className="site-container py-16 md:py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-[var(--radius-panel)] p-8 md:p-10">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <StaggerItem className="bg-white rounded-[var(--radius-panel)] p-8 md:p-10">
               <div className="w-12 h-12 bg-lavender/20 rounded-full flex items-center justify-center mb-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-lavender" aria-hidden="true">
                   <circle cx="12" cy="12" r="10" />
@@ -53,9 +62,9 @@ export default function AboutPage() {
                 manufacturers and maintaining the highest standards of regulatory
                 compliance.
               </p>
-            </div>
+            </StaggerItem>
 
-            <div className="bg-white rounded-[var(--radius-panel)] p-8 md:p-10">
+            <StaggerItem className="bg-white rounded-[var(--radius-panel)] p-8 md:p-10">
               <div className="w-12 h-12 bg-sage/20 rounded-full flex items-center justify-center mb-5">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-sage-dark" aria-hidden="true">
                   <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
@@ -68,24 +77,24 @@ export default function AboutPage() {
                 distribution — known for product integrity, regulatory compliance, and
                 unwavering commitment to the health and wellbeing of every patient we serve.
               </p>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Manufacturing Partners */}
       <section className="bg-sage/30">
         <div className="site-container py-16 md:py-20">
-          <div className="text-center mb-12">
+          <FadeIn className="text-center mb-12">
             <SectionEyebrow>Manufacturing Excellence</SectionEyebrow>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-ink">
               Our Manufacturing Partners
             </h2>
-          </div>
+          </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {manufacturers.map((mfr) => (
-              <div
+              <StaggerItem
                 key={mfr.name}
                 className="bg-white rounded-[var(--radius-panel)] p-8"
               >
@@ -108,15 +117,15 @@ export default function AboutPage() {
                     <p className="text-body mt-1">{mfr.makes}</p>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Company Details */}
       <section className="bg-cream">
-        <div className="site-container py-16 md:py-20">
+        <SlideUp className="site-container py-16 md:py-20">
           <div className="max-w-2xl mx-auto text-center">
             <SectionEyebrow>Registration Details</SectionEyebrow>
             <h2 className="text-3xl font-extrabold text-ink mb-8">
@@ -136,7 +145,7 @@ export default function AboutPage() {
               <WhatsAppButton message="Hi, I'd like to know more about Trudanaz Pharmaceuticals." />
             </div>
           </div>
-        </div>
+        </SlideUp>
       </section>
     </>
   );
