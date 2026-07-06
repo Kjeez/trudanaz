@@ -97,6 +97,29 @@
     padding-left: 24px;
     padding-right: 24px;
   }
+
+  /* Floating WhatsApp pulse ring */
+  .animate-pulse-ring {
+    animation: pulse-ring 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Faint dot-grid backdrop for hero sections */
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, var(--color-ink) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
 }
 
 /* ─── Accessibility: prefers-reduced-motion ─── */

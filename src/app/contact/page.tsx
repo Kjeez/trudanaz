@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { company } from "@/data/products";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ContactForm from "./ContactForm";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us",
