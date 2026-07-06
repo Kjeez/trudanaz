@@ -20,37 +20,40 @@ export default function HomePage() {
       <FloatingContactButtons />
 
       {/* ─── Hero ─── */}
-      <section className="relative overflow-hidden bg-pink-hero">
+      <section className="relative overflow-hidden bg-pink-hero text-white">
         {/* Decorative backdrop */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-28 -right-20 h-[420px] w-[420px] rounded-full bg-lavender/40 blur-3xl"
+          className="pointer-events-none absolute -top-28 -right-20 h-[500px] w-[500px] rounded-full bg-primary/20 blur-[100px]"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 -left-24 h-[380px] w-[380px] rounded-full bg-sage/40 blur-3xl"
+          className="pointer-events-none absolute -bottom-32 -left-24 h-[400px] w-[400px] rounded-full bg-lavender/20 blur-[100px]"
         />
         <div
           aria-hidden="true"
-          className="bg-dot-grid pointer-events-none absolute inset-0 opacity-[0.06]"
+          className="bg-dot-grid pointer-events-none absolute inset-0 opacity-[0.1]"
         />
 
-        <div className="site-container relative py-16 md:py-24 lg:py-28">
+        <div className="site-container relative py-20 md:py-28 lg:py-32">
           <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
             {/* Copy */}
             <StaggerContainer className="max-w-xl">
               <StaggerItem>
-                <SectionEyebrow>Trusted Pharmaceutical Excellence</SectionEyebrow>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-primary">Trusted Pharmaceutical Excellence</span>
+                </div>
               </StaggerItem>
               <StaggerItem>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-ink leading-[1.0] tracking-tight mb-6 mt-4">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight mb-6">
                   Dedicated to{" "}
-                  <span className="text-lavender">Better</span>{" "}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-lavender">Better</span>{" "}
                   Living
                 </h1>
               </StaggerItem>
               <StaggerItem>
-                <p className="text-body text-lg sm:text-xl max-w-xl mb-8 leading-relaxed">
+                <p className="text-white/70 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed font-light">
                   {company.name} delivers WHO-GMP and ISO-certified pharmaceutical
                   and nutraceutical products — engineered for efficacy, manufactured
                   with integrity.
@@ -60,7 +63,7 @@ export default function HomePage() {
                 <div className="flex flex-wrap gap-4 mb-9">
                   <Link
                     href="/products"
-                    className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-ink font-bold px-7 py-3.5 rounded-full transition-colors text-sm shadow-lg shadow-primary/30"
+                    className="inline-flex items-center justify-center bg-primary hover:bg-primary-hover text-ink font-bold px-8 py-4 rounded-full transition-colors text-[15px] shadow-[0_0_20px_rgba(0,212,255,0.3)] hover:shadow-[0_0_30px_rgba(0,212,255,0.5)]"
                   >
                     Explore Products
                   </Link>
@@ -70,13 +73,13 @@ export default function HomePage() {
 
               {/* Trust strip */}
               <StaggerItem>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-6 border-t border-ink/10">
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-6 border-t border-white/10">
                   {trustMarks.map((mark) => (
                     <span
                       key={mark}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-ink/70 uppercase tracking-wide"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-white/70 uppercase tracking-wide"
                     >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-sage-dark shrink-0" aria-hidden="true">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-primary shrink-0" aria-hidden="true">
                         <path d="m5 13 4 4L19 7" />
                       </svg>
                       {mark}
@@ -87,12 +90,12 @@ export default function HomePage() {
             </StaggerContainer>
 
             {/* Visual showcase */}
-            <FadeIn delay={0.3} className="relative hidden lg:block">
-              <div className="grid grid-cols-2 gap-5 px-4">
+            <FadeIn delay={0.3} className="relative mt-12 lg:mt-0">
+              <div className="grid grid-cols-2 gap-5 px-4 relative z-10">
                 {showcaseProducts.map((product, i) => (
                   <div
                     key={product.slug}
-                    className={`rounded-[var(--radius-card)] bg-white p-4 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 ${
+                    className={`rounded-[var(--radius-card)] bg-white/5 backdrop-blur-md border border-white/10 p-4 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(0,212,255,0.2)] ${
                       i % 2 === 0 ? "translate-y-4 -rotate-2" : "-translate-y-2 rotate-2"
                     }`}
                   >
@@ -102,7 +105,7 @@ export default function HomePage() {
                         alt={product.name}
                         fill
                         sizes="180px"
-                        className="object-contain"
+                        className="object-contain drop-shadow-xl"
                       />
                     </div>
                   </div>
@@ -110,15 +113,15 @@ export default function HomePage() {
               </div>
 
               {/* Floating stat badges */}
-              <div className="absolute -top-6 -right-2 rotate-3 rounded-2xl bg-primary px-5 py-3.5 shadow-xl">
-                <p className="text-xl font-extrabold text-ink leading-none">WHO-GMP</p>
-                <p className="text-[11px] font-bold uppercase tracking-wide text-ink/70 mt-1">
+              <div className="absolute -top-6 -right-2 rotate-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 px-6 py-4 shadow-2xl z-20">
+                <p className="text-xl font-black text-white leading-none">WHO-GMP</p>
+                <p className="text-[11px] font-bold uppercase tracking-wide text-primary mt-1">
                   Certified Facilities
                 </p>
               </div>
-              <div className="absolute -bottom-6 -left-6 -rotate-2 rounded-2xl bg-ink px-5 py-3.5 shadow-xl">
-                <p className="text-xl font-extrabold text-white leading-none">7+</p>
-                <p className="text-[11px] font-bold uppercase tracking-wide text-white/60 mt-1">
+              <div className="absolute -bottom-6 -left-6 -rotate-2 rounded-2xl bg-gradient-to-br from-primary to-lavender px-6 py-4 shadow-[0_0_30px_rgba(0,212,255,0.4)] z-20">
+                <p className="text-xl font-black text-ink leading-none">7+</p>
+                <p className="text-[11px] font-bold uppercase tracking-wide text-ink/80 mt-1">
                   Trusted Products
                 </p>
               </div>

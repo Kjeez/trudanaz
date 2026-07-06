@@ -3,27 +3,27 @@
 /* ─── Design System Tokens (Tailwind v4 @theme) ─── */
 @theme inline {
   /* Font family — uses CSS var set by next/font */
-  --font-sans: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
 
   /* Background palette */
-  --color-cream: #FBF8ED;
-  --color-cream-alt: #F3EEDC;
+  --color-cream: #F8FAFC; /* Slate-50 - clean medical white */
+  --color-cream-alt: #F1F5F9; /* Slate-100 */
 
   /* Text palette */
-  --color-ink: #1C1A2E;
-  --color-body: #4C4A61;
-  --color-muted: #8A889B;
+  --color-ink: #0F172A; /* Slate-900 */
+  --color-body: #475569; /* Slate-600 */
+  --color-muted: #94A3B8; /* Slate-400 */
 
   /* Primary / CTA */
-  --color-primary: #FCD22D;
-  --color-primary-hover: #ecc21f;
+  --color-primary: #00D4FF;
+  --color-primary-hover: #00B3E6;
 
   /* Accents */
-  --color-lavender: #B4A7E5;
-  --color-sage: #A9C0B6;
-  --color-sage-dark: #8FA99E;
-  --color-pink-hero: #F6D4D2;
-  --color-product-bed: #ECEBE6;
+  --color-lavender: #0EA5E9; /* Sky-500 */
+  --color-sage: #E0F2FE; /* Sky-100 */
+  --color-sage-dark: #7DD3FC; /* Sky-300 */
+  --color-pink-hero: #0A2540; /* Deep Trust Navy */
+  --color-product-bed: #FFFFFF;
 
   /* Brand / functional */
   --color-whatsapp: #25D366;
@@ -32,8 +32,8 @@
   --color-logo-green: #6AA319;
 
   /* Radius */
-  --radius-card: 14px;
-  --radius-panel: 24px;
+  --radius-card: 16px;
+  --radius-panel: 32px;
 }
 
 /* ─── Base layer resets ─── */
