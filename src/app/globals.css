@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Design System Tokens (Tailwind v4 @theme) ─── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Font family — uses CSS var set by next/font */
+  --font-sans: var(--font-hanken-grotesk), ui-sans-serif, system-ui, sans-serif;
+
+  /* Background palette */
+  --color-cream: #FBF8ED;
+  --color-cream-alt: #F3EEDC;
+
+  /* Text palette */
+  --color-ink: #1C1A2E;
+  --color-body: #4C4A61;
+  --color-muted: #8A889B;
+
+  /* Primary / CTA */
+  --color-primary: #FCD22D;
+  --color-primary-hover: #ecc21f;
+
+  /* Accents */
+  --color-lavender: #B4A7E5;
+  --color-sage: #A9C0B6;
+  --color-sage-dark: #8FA99E;
+  --color-pink-hero: #F6D4D2;
+  --color-product-bed: #ECEBE6;
+
+  /* Brand / functional */
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1da851;
+  --color-logo-navy: #082C57;
+  --color-logo-green: #6AA319;
+
+  /* Radius */
+  --radius-card: 14px;
+  --radius-panel: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Base layer resets ─── */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-ink);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+  }
+
+  /* Focus-visible ring for keyboard accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-lavender);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove focus ring on mouse clicks */
+  :focus:not(:focus-visible) {
+    outline: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Utility classes ─── */
+@layer utilities {
+  /* Section eyebrow label */
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  /* Container */
+  .site-container {
+    max-width: 1240px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* ─── Accessibility: prefers-reduced-motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
