@@ -19,7 +19,7 @@ export async function generateMetadata({
   if (!product) return { title: "Product Not Found" };
 
   return {
-    title: product.name,
+    title: `${product.name} — ${product.tagline}`,
     description: `${product.tagline} — ${product.composition}`,
   };
 }
@@ -34,6 +34,7 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   const hasImage = product.image && product.image.length > 0;
+  const isNutraceutical = product.category === "Nutraceutical";
 
   return (
     <section className="bg-slate-50 min-h-screen">
@@ -57,16 +58,17 @@ export default async function ProductDetailPage({
           </ol>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+        {/* Top: image + core info */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10">
           {/* Product image */}
           <div className="bg-white rounded-3xl p-6 md:p-10 flex items-center justify-center min-h-[320px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100">
             {hasImage ? (
               <Image
                 src={product.image}
                 alt={`${product.name} — ${product.tagline}`}
-                width={600}
-                height={450}
-                className="object-contain max-h-[400px] w-auto hover:scale-[1.02] transition-transform duration-300"
+                width={700}
+                height={520}
+                className="object-contain max-h-[420px] w-auto hover:scale-[1.02] transition-transform duration-300"
                 priority
               />
             ) : (
@@ -81,7 +83,7 @@ export default async function ProductDetailPage({
             )}
           </div>
 
-          {/* Product details */}
+          {/* Core details */}
           <div>
             {/* Category badge */}
             <span
@@ -99,39 +101,26 @@ export default async function ProductDetailPage({
             </h1>
             <p className="text-body text-lg mb-8 font-medium">{product.tagline}</p>
 
-            {/* Details table */}
-            <div className="space-y-5 bg-white rounded-3xl p-8 shadow-[0_4px_20px_rgb(0,0,0,0.02)] border border-slate-100">
-              <DetailRow label="Composition" value={product.composition} />
-              <DetailRow label="Dosage Form" value={product.dosageForm} />
-              <DetailRow label="Pack Size" value={product.packSize} />
-              <DetailRow
-                label="Manufactured By"
-                value={product.manufacturedBy}
-              />
+            {/* Key specs grid */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              <div className="bg-white rounded-2xl p-4 border border-slate-100">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-1">Dosage Form</p>
+                <p className="text-ink text-sm font-semibold leading-snug">{product.dosageForm}</p>
+              </div>
+              <div className="bg-white rounded-2xl p-4 border border-slate-100">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-1">Pack Size</p>
+                <p className="text-ink text-sm font-semibold leading-snug">{product.packSize}</p>
+              </div>
               {product.licenseNo && (
-                <DetailRow label="License No." value={product.licenseNo} />
+                <div className="bg-white rounded-2xl p-4 border border-slate-100 col-span-2">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted mb-1">License No.</p>
+                  <p className="text-ink text-sm font-semibold leading-snug">{product.licenseNo}</p>
+                </div>
               )}
             </div>
 
-            {/* Caution notice */}
-            {product.caution && (
-              <div className="mt-6 bg-pink-hero/10 border border-pink-hero/20 rounded-2xl p-6">
-                <p className="text-sm font-bold text-ink mb-2 flex items-center gap-2">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500" aria-hidden="true">
-                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-                    <path d="M12 9v4" />
-                    <path d="M12 17h.01" />
-                  </svg>
-                  Important Notice
-                </p>
-                <p className="text-sm text-body font-medium leading-relaxed">
-                  {product.caution}
-                </p>
-              </div>
-            )}
-
             {/* CTA */}
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4">
               <WhatsAppButton
                 message={`Hi, I'd like to enquire about ${product.name} (${product.dosageForm}).`}
                 size="lg"
@@ -145,18 +134,110 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </div>
+
+        {/* Detail sections */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          {/* Composition */}
+          <div className="lg:col-span-2 bg-white rounded-3xl p-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100">
+            <SectionTitle icon="🧪" title="Composition" />
+            <p className="text-ink text-[15px] font-medium leading-relaxed">{product.composition}</p>
+
+            {product.colour && (
+              <div className="mt-4 pt-4 border-t border-slate-100">
+                <span className="text-xs font-bold uppercase tracking-widest text-muted">Colour: </span>
+                <span className="text-ink text-sm font-medium">{product.colour}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Storage & Dosage */}
+          <div className="space-y-4">
+            <div className="bg-white rounded-3xl p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100">
+              <SectionTitle icon="🌡️" title="Storage" />
+              <p className="text-ink text-sm font-medium leading-relaxed">{product.storage}</p>
+            </div>
+            {product.dosage && (
+              <div className="bg-white rounded-3xl p-6 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100">
+                <SectionTitle icon="💊" title="Dosage" />
+                <p className="text-ink text-sm font-medium leading-relaxed">{product.dosage}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Nutritional info for nutraceuticals */}
+          {isNutraceutical && product.nutritionalInfo && (
+            <div className="lg:col-span-2 bg-white rounded-3xl p-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100">
+              <SectionTitle icon="📊" title="Nutritional Information (Approximate Values)" />
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-slate-100">
+                      <th className="text-left text-[11px] uppercase tracking-widest text-muted font-bold py-2 pr-4">Nutrient</th>
+                      <th className="text-right text-[11px] uppercase tracking-widest text-muted font-bold py-2">Per Serving</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {product.nutritionalInfo.split(" | ").map((row) => {
+                      const [label, val] = row.split(": ");
+                      return (
+                        <tr key={label} className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                          <td className="py-2 pr-4 text-ink font-medium">{label}</td>
+                          <td className="py-2 text-right text-body font-medium">{val ?? ""}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Ingredients for nutraceuticals */}
+          {isNutraceutical && product.ingredients && (
+            <div className={`bg-white rounded-3xl p-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100 ${product.nutritionalInfo ? "" : "lg:col-span-2"}`}>
+              <SectionTitle icon="🌿" title="Ingredients" />
+              <p className="text-ink text-sm font-medium leading-relaxed">{product.ingredients}</p>
+            </div>
+          )}
+
+          {/* Manufactured By + Marketed By */}
+          <div className="lg:col-span-2 bg-white rounded-3xl p-8 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100">
+            <SectionTitle icon="🏭" title="Manufactured By" />
+            <p className="text-ink text-[15px] font-medium leading-relaxed mb-6">{product.manufacturedBy}</p>
+            <div className="pt-5 border-t border-slate-100">
+              <p className="text-[11px] font-bold uppercase tracking-widest text-muted mb-2">Marketed By</p>
+              <p className="text-ink text-sm font-medium leading-relaxed">{product.marketedBy}</p>
+            </div>
+          </div>
+
+          {/* Caution notice */}
+          {product.caution && (
+            <div className="bg-red-50 border border-red-100 rounded-3xl p-8">
+              <div className="flex items-center gap-2 mb-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500 shrink-0" aria-hidden="true">
+                  <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                </svg>
+                <p className="text-sm font-black text-ink uppercase tracking-wide">Important Notice</p>
+              </div>
+              <p className="text-sm text-body font-medium leading-relaxed">
+                {product.caution}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
 }
 
-function DetailRow({ label, value }: { label: string; value: string }) {
+function SectionTitle({ icon, title }: { icon: string; title: string }) {
   return (
-    <div className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-      <dt className="text-xs font-bold uppercase tracking-widest text-primary mb-1">
-        {label}
-      </dt>
-      <dd className="text-ink text-[15px] font-medium leading-relaxed">{value}</dd>
+    <div className="flex items-center gap-2 mb-4">
+      <span className="text-lg" aria-hidden="true">{icon}</span>
+      <h2 className="text-xs font-black uppercase tracking-widest text-primary">{title}</h2>
     </div>
   );
 }
