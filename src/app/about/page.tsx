@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { company, manufacturers } from "@/data/products";
 import SectionEyebrow from "@/components/SectionEyebrow";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -132,8 +133,50 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Leadership Team */}
+      <section className="bg-slate-50 border-t border-slate-100">
+        <div className="site-container py-20 md:py-28">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight mb-4">
+              Our Leadership
+            </h2>
+            <p className="text-body text-lg max-w-2xl mx-auto">
+              Meet the experienced professionals guiding {company.name}.
+            </p>
+          </FadeIn>
+
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <StaggerItem className="bg-white rounded-[32px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 text-center hover:shadow-[0_8px_40px_rgba(0,212,255,0.08)] transition-all">
+              <div className="relative w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden shadow-sm">
+                <Image
+                  src="/team/dr-sakirul-islam.jpeg"
+                  alt="Dr Sakirul Islam"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-ink mb-1">Dr Sakirul Islam</h3>
+              <p className="text-primary font-medium text-[15px]">Director</p>
+            </StaggerItem>
+
+            <StaggerItem className="bg-white rounded-[32px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 text-center hover:shadow-[0_8px_40px_rgba(0,212,255,0.08)] transition-all">
+              <div className="relative w-48 h-48 mx-auto mb-6 rounded-2xl overflow-hidden shadow-sm">
+                <Image
+                  src="/team/gitanjali-baruah.jpeg"
+                  alt="Gitanjali Baruah"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-ink mb-1">Gitanjali Baruah</h3>
+              <p className="text-primary font-medium text-[15px]">Director</p>
+            </StaggerItem>
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* Company Details */}
-      <section className="bg-slate-50">
+      <section className="bg-white">
         <SlideUp className="site-container py-20 md:py-28">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-extrabold text-ink mb-10 tracking-tight">

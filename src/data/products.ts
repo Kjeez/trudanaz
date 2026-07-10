@@ -188,8 +188,8 @@ export const company = {
   // TODO: fill these in before launch
   gstin: "GSTIN_HERE",
   cin: "CIN_HERE",
-  phone: "+91 00000 00000",
-  whatsapp: "9100000000000", // digits only, with country code, e.g. 919876543210
+  phone: "+91 9282051100",
+  whatsapp: "919282051100", // digits only, with country code, e.g. 919876543210
   email: "enquiries@trudanaz.com",
 };
 
