@@ -156,7 +156,7 @@ export default function AboutPage() {
                 />
               </div>
               <h3 className="text-2xl font-bold text-ink mb-1">Dr Sakirul Islam</h3>
-              <p className="text-primary font-medium text-[15px]">Director</p>
+              <p className="text-primary font-medium text-[15px]">Managing Director</p>
             </StaggerItem>
 
             <StaggerItem className="bg-white rounded-[32px] p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 text-center hover:shadow-[0_8px_40px_rgba(0,212,255,0.08)] transition-all">
@@ -169,7 +169,7 @@ export default function AboutPage() {
                 />
               </div>
               <h3 className="text-2xl font-bold text-ink mb-1">Gitanjali Baruah</h3>
-              <p className="text-primary font-medium text-[15px]">Director</p>
+              <p className="text-primary font-medium text-[15px]">Business Development Manager</p>
             </StaggerItem>
           </StaggerContainer>
         </div>
