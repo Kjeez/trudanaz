@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 
-const BASE_URL = "https://trudanaz.com";
+const BASE_URL = "https://www.trudanazpharma.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [

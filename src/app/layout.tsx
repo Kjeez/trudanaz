@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trudanaz.com"),
+  metadataBase: new URL("https://www.trudanazpharma.com"),
   title: {
     default: `${company.name} — ${company.tagline}`,
     template: `%s | ${company.name}`,
