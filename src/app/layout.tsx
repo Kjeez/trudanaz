@@ -70,6 +70,15 @@ export default function RootLayout({
         />
         {/* End Google Tag Manager */}
 
+        {/* Google Analytics (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9HKKRE8KT" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-D9HKKRE8KT');`,
+          }}
+        />
+        {/* End Google Analytics */}
+
         {/* Organization structured data */}
         <script
           type="application/ld+json"
