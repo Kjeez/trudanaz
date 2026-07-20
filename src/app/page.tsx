@@ -6,7 +6,7 @@ import SectionEyebrow from "@/components/SectionEyebrow";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ContactForm from "@/components/ContactForm";
 import FloatingContactButtons from "@/components/FloatingContactButtons";
-import AutoCarousel from "@/components/AutoCarousel";
+import RelatedProductsCarousel from "@/components/RelatedProductsCarousel";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/Animations";
 
 const trustMarks = ["WHO-GMP", "ISO 9001:2015", "FSSAI", "HACCP"];
@@ -176,8 +176,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── Featured Products (Auto Carousel) ─── */}
-      <section className="bg-cream-alt overflow-hidden">
-        <div className="site-container py-16 md:py-20 pb-0">
+      <section className="bg-sage overflow-hidden">
+        <div className="site-container py-16 md:py-20">
           <FadeIn className="flex items-end justify-between mb-10">
             <div>
               <SectionEyebrow>Our Products</SectionEyebrow>
@@ -192,13 +192,11 @@ export default function HomePage() {
               View All Products →
             </Link>
           </FadeIn>
-        </div>
-        
-        <FadeIn delay={0.2}>
-          <AutoCarousel />
-        </FadeIn>
 
-        <div className="site-container pb-16 md:pb-20">
+          <FadeIn delay={0.2}>
+            <RelatedProductsCarousel products={products} />
+          </FadeIn>
+
           <div className="sm:hidden mt-8 text-center">
             <Link
               href="/products"

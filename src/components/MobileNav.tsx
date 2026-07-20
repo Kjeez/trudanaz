@@ -81,12 +81,12 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
         />
       )}
 
-      {/* Drawer */}
+      {/* Drawer — only mounted while open, so its off-screen state can never
+          make the page scroll sideways. Slides in via a CSS keyframe. */}
+      {open && (
       <nav
-        className={`fixed top-0 right-0 z-[58] w-[280px] h-[100dvh] shadow-2xl border-l border-slate-100 transform transition-transform duration-300 ease-out ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
-        style={{ backgroundColor: "#ffffff", position: 'fixed' }}
+        className="fixed top-0 right-0 z-[58] w-[280px] h-[100dvh] shadow-2xl border-l border-slate-100 animate-[drawer-in_0.3s_ease-out]"
+        style={{ backgroundColor: "#ffffff" }}
         aria-label="Mobile navigation"
       >
         <div className="flex flex-col pt-24 px-6 gap-2 h-[100dvh]" style={{ backgroundColor: "#ffffff" }}>
@@ -119,6 +119,7 @@ export default function MobileNav({ links }: { links: NavLink[] }) {
           </a>
         </div>
       </nav>
+      )}
     </div>
   );
 }

@@ -14,19 +14,24 @@ export default function RelatedProductsCarousel({
   products,
   interval = 3500,
 }: RelatedProductsCarouselProps) {
-  const [itemsPerView, setItemsPerView] = useState(3);
+  const [itemsPerView, setItemsPerView] = useState(1);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Responsive items-per-view.
+  // Responsive items-per-view, based on the carousel's own width (not
+  // window.innerWidth, which can be inflated by page-level overflow).
   useEffect(() => {
-    const compute = () => {
-      const w = window.innerWidth;
-      setItemsPerView(w < 640 ? 1 : w < 1024 ? 2 : 3);
-    };
-    compute();
-    window.addEventListener("resize", compute);
-    return () => window.removeEventListener("resize", compute);
+    const el = containerRef.current;
+    if (!el) return;
+    const compute = (w: number) =>
+      setItemsPerView(w < 500 ? 1 : w < 800 ? 2 : 3);
+    compute(el.clientWidth);
+    const ro = new ResizeObserver((entries) =>
+      compute(entries[0].contentRect.width)
+    );
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   const maxIndex = Math.max(0, products.length - itemsPerView);
@@ -60,6 +65,7 @@ export default function RelatedProductsCarousel({
 
   return (
     <div
+      ref={containerRef}
       className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
