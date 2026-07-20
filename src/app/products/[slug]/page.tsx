@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { products, getProduct, whatsappLink } from "@/data/products";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import RelatedProductsCarousel from "@/components/RelatedProductsCarousel";
 
 export async function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -35,6 +36,7 @@ export default async function ProductDetailPage({
 
   const hasImage = product.image && product.image.length > 0;
   const isNutraceutical = product.category === "Nutraceutical";
+  const relatedProducts = products.filter((p) => p.slug !== product.slug);
 
   return (
     <section className="bg-slate-50 min-h-screen">
@@ -228,6 +230,29 @@ export default async function ProductDetailPage({
             </div>
           )}
         </div>
+
+        {/* More products */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-16 md:mt-20">
+            <div className="flex items-end justify-between gap-4 mb-8">
+              <div>
+                <p className="text-[11px] font-black uppercase tracking-widest text-primary mb-1">
+                  Explore More
+                </p>
+                <h2 className="text-2xl sm:text-3xl font-black text-ink tracking-tight">
+                  Other Products
+                </h2>
+              </div>
+              <Link
+                href="/products"
+                className="hidden sm:inline-flex items-center gap-1 text-sm font-bold text-ink hover:text-lavender transition-colors shrink-0"
+              >
+                View all →
+              </Link>
+            </div>
+            <RelatedProductsCarousel products={relatedProducts} />
+          </div>
+        )}
       </div>
     </section>
   );
